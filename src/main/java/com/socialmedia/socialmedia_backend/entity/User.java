@@ -1,0 +1,61 @@
+package com.socialmedia.socialmedia_backend.entity;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Entity
+@Table(name="users")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+
+    @Column(nullable = false, unique = true)
+    private String username;
+
+    private String firstName;
+    private String lastName;
+
+    @Email(message = "Enter valid email address")
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    private String bio;
+
+    private String profilePicUrl;
+
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("user")
+    private List<Post> posts;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("user")
+    private List<Comment> comments;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("user")
+    private List<Like> likes;
+
+    @PrePersist
+    public void createdTime(){
+        this.createdAt = LocalDateTime.now();
+    }
+
+
+
+}

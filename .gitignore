@@ -1,0 +1,129 @@
+```gitignore
+############################
+# Spring Boot / Java
+############################
+target/
+build/
+out/
+*.class
+*.jar
+*.war
+*.ear
+
+############################
+# Maven
+############################
+.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
+
+############################
+# Gradle
+############################
+.gradle/
+
+############################
+# Logs
+############################
+logs/
+*.log
+
+############################
+# Environment Variables
+############################
+.env
+.env.*
+application-local.yml
+application-local.yaml
+application-local.properties
+
+############################
+# Secrets / Keys
+############################
+*.pem
+*.key
+*.p12
+*.jks
+
+############################
+# IntelliJ IDEA
+############################
+.idea/
+*.iws
+*.iml
+*.ipr
+
+############################
+# VS Code
+############################
+.vscode/
+
+############################
+# Eclipse / STS
+############################
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+############################
+# NetBeans
+############################
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+############################
+# OS Files
+############################
+.DS_Store
+Thumbs.db
+
+############################
+# Temporary Files
+############################
+*.tmp
+*.swp
+*.swo
+*~
+
+############################
+# Testing
+############################
+coverage/
+test-output/
+
+############################
+# Uploads / Media
+############################
+uploads/
+media/
+
+############################
+# Node (if frontend added later)
+############################
+node_modules/
+
+############################
+# Docker
+############################
+docker-compose.override.yml
+
+############################
+# Mac/Linux Hidden Files
+############################
+.AppleDouble
+.LSOverride
+
+############################
+# Keep source build folders
+############################
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
+```
