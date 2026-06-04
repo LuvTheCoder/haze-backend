@@ -32,9 +32,24 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)
+    private String password;
+
     private String bio;
 
     private String profilePicUrl;
+
+    @Column(nullable = false)
+    @Builder.Default
+    private String role = "USER";
+
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean banned = false;
+
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean verified = false;
 
     @Column(updatable = false)
     private LocalDateTime createdAt;
