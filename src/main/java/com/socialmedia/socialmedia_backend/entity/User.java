@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Email;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -65,6 +66,19 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("user")
     private List<Like> likes;
+
+    @ManyToMany
+    @JoinTable(
+          name="user_followers",
+          joinColumns = @JoinColumn(name="following_id"),
+          inverseJoinColumns = @JoinColumn(name="follower_id")
+    )
+    @JsonIgnoreProperties({"followers", "following", "posts", "comments", "likes", "password"})
+    private List<User> followers = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "followers")
+    @JsonIgnoreProperties({"followers", "following", "posts", "comments", "likes", "password"})
+    private  List<User> following = new ArrayList<>();
 
     @PrePersist
     public void createdTime(){
