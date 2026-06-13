@@ -26,30 +26,30 @@ public class JwtUtil {
     // step 2 - generate a token using the user's email
     public String generateToken(String email) {
         return Jwts.builder()
-                .subject(email)
-                .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + expiration))
-                .signWith(getKey())
-                .compact();
+                .subject(email) //Who this token for
+                .issuedAt(new Date()) //When was it created
+                .expiration(new Date(System.currentTimeMillis() + expiration)) //When will it expire
+                .signWith(getKey()) // SIGNED with the secret key so no one can fake it
+                .compact(); // compact everything into a single string
     }
 
     // step 3 - read the email back from the token
     public String getEmailFromToken(String token) {
         return Jwts.parser()
-                .verifyWith(getKey())
+                .verifyWith(getKey()) // verify the signature matches
                 .build()
-                .parseSignedClaims(token)
+                .parseSignedClaims(token) // parse the token
                 .getPayload()
-                .getSubject();
+                .getSubject(); // extract the email
     }
 
     // step 4 - check if token is valid and not expired
     public boolean isTokenValid(String token) {
         try {
             Jwts.parser()
-                    .verifyWith(getKey())
-                    .build()
-                    .parseSignedClaims(token);
+                    .verifyWith(getKey()) // verify the signature matches
+                    .build() // build the parser
+                    .parseSignedClaims(token); // parse the token
             return true;
         } catch (JwtException e) {
             return false;
