@@ -3,9 +3,9 @@ spring:
     name: socialmedia-backend
 
   datasource:
-    url: jdbc:postgresql://aws-1-ap-south-1.pooler.supabase.com:5432/postgres
-    username: postgres.wrgmbkibjtkrpomtykwd
-    password: 47FfsU9ixjXGoyYb
+    url: ${DATABASE_URL:jdbc:postgresql://aws-1-ap-south-1.pooler.supabase.com:5432/postgres}
+    username: ${DATABASE_USERNAME:postgres.wrgmbkibjtkrpomtykwd}
+    password: ${DATABASE_PASSWORD:47FfsU9ixjXGoyYb}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -15,8 +15,8 @@ spring:
     show-sql: true
 
 jwt:
-  secret: mySuperSecretKeyForJWTThatIsLongEnough123456789
+  secret: ${JWT_SECRET:mySuperSecretKeyForJWTThatIsLongEnough123456789}
   expiration: 86400000
 
 server:
-  port: 8080
+  port: ${PORT:8080}
